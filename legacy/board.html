@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mural de profissionais e agendamentos">
+    <title>Mural - Barber & Beauty</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="board.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7.5 7.5L16.5 16.5M16.5 7.5L7.5 16.5M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <h1>Barber & Beauty</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Voltar</a>
+                    <button class="btn btn-primary" onclick="handleLogin()">Entrar</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Board Hero -->
+    <section class="board-hero">
+        <div class="container">
+            <h2 class="page-title">Mural de Profissionais</h2>
+            <p class="page-subtitle">Conheça nossa equipe de especialistas e veja os horários disponíveis</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="service-filter">Serviço:</label>
+                    <select id="service-filter" class="filter-select">
+                        <option value="all">Todos os Serviços</option>
+                        <option value="corte">Corte de Cabelo</option>
+                        <option value="barba">Barba & Bigode</option>
+                        <option value="coloracao">Coloração</option>
+                        <option value="tratamento">Tratamento Capilar</option>
+                        <option value="manicure">Manicure & Pedicure</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="date-filter">Data:</label>
+                    <input type="date" id="date-filter" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label for="time-filter">Horário:</label>
+                    <select id="time-filter" class="filter-select">
+                        <option value="all">Todos os Horários</option>
+                        <option value="morning">Manhã (8h - 12h)</option>
+                        <option value="afternoon">Tarde (12h - 18h)</option>
+                        <option value="evening">Noite (18h - 22h)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professionals Grid -->
+    <section class="professionals-section">
+        <div class="container">
+            <div class="professionals-grid">
+                <!-- Professional 1 -->
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="professional-info">
+                            <h3 class="professional-name">Carlos Silva</h3>
+                            <p class="professional-role">Barbeiro Master</p>
+                            <div class="professional-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(127 avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="professional-specialties">
+                        <span class="specialty-tag">Cortes</span>
+                        <span class="specialty-tag">Barba</span>
+                        <span class="specialty-tag">Coloração</span>
+                    </div>
+                    <div class="professional-schedule">
+                        <h4>Horários Disponíveis Hoje:</h4>
+                        <div class="time-slots">
+                            <button class="time-slot">09:00</button>
+                            <button class="time-slot">11:00</button>
+                            <button class="time-slot">14:00</button>
+                            <button class="time-slot">16:00</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="bookAppointment('Carlos Silva')">Agendar com Carlos</button>
+                </div>
+
+                <!-- Professional 2 -->
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="professional-info">
+                            <h3 class="professional-name">Ana Rodrigues</h3>
+                            <p class="professional-role">Cabeleireira Expert</p>
+                            <div class="professional-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(189 avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="professional-specialties">
+                        <span class="specialty-tag">Cortes Femininos</span>
+                        <span class="specialty-tag">Coloração</span>
+                        <span class="specialty-tag">Tratamentos</span>
+                    </div>
+                    <div class="professional-schedule">
+                        <h4>Horários Disponíveis Hoje:</h4>
+                        <div class="time-slots">
+                            <button class="time-slot">10:00</button>
+                            <button class="time-slot">13:00</button>
+                            <button class="time-slot">15:00</button>
+                            <button class="time-slot">17:00</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="bookAppointment('Ana Rodrigues')">Agendar com Ana</button>
+                </div>
+
+                <!-- Professional 3 -->
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="professional-info">
+                            <h3 class="professional-name">Roberto Martins</h3>
+                            <p class="professional-role">Barbeiro Profissional</p>
+                            <div class="professional-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(94 avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="professional-specialties">
+                        <span class="specialty-tag">Cortes Masculinos</span>
+                        <span class="specialty-tag">Barba</span>
+                    </div>
+                    <div class="professional-schedule">
+                        <h4>Horários Disponíveis Hoje:</h4>
+                        <div class="time-slots">
+                            <button class="time-slot">09:30</button>
+                            <button class="time-slot">12:00</button>
+                            <button class="time-slot">14:30</button>
+                            <button class="time-slot">18:00</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="bookAppointment('Roberto Martins')">Agendar com Roberto</button>
+                </div>
+
+                <!-- Professional 4 -->
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="professional-info">
+                            <h3 class="professional-name">Juliana Costa</h3>
+                            <p class="professional-role">Manicure & Pedicure</p>
+                            <div class="professional-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(156 avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="professional-specialties">
+                        <span class="specialty-tag">Manicure</span>
+                        <span class="specialty-tag">Pedicure</span>
+                        <span class="specialty-tag">Nail Art</span>
+                    </div>
+                    <div class="professional-schedule">
+                        <h4>Horários Disponíveis Hoje:</h4>
+                        <div class="time-slots">
+                            <button class="time-slot">10:30</button>
+                            <button class="time-slot">13:30</button>
+                            <button class="time-slot">15:30</button>
+                            <button class="time-slot">17:30</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="bookAppointment('Juliana Costa')">Agendar com Juliana</button>
+                </div>
+
+                <!-- Professional 5 -->
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="professional-info">
+                            <h3 class="professional-name">Pedro Santos</h3>
+                            <p class="professional-role">Colorista Expert</p>
+                            <div class="professional-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(112 avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="professional-specialties">
+                        <span class="specialty-tag">Coloração</span>
+                        <span class="specialty-tag">Mechas</span>
+                        <span class="specialty-tag">Luzes</span>
+                    </div>
+                    <div class="professional-schedule">
+                        <h4>Horários Disponíveis Hoje:</h4>
+                        <div class="time-slots">
+                            <button class="time-slot">11:00</button>
+                            <button class="time-slot">14:00</button>
+                            <button class="time-slot">16:30</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="bookAppointment('Pedro Santos')">Agendar com Pedro</button>
+                </div>
+
+                <!-- Professional 6 -->
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="professional-info">
+                            <h3 class="professional-name">Mariana Lima</h3>
+                            <p class="professional-role">Tratamentos Capilares</p>
+                            <div class="professional-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(143 avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="professional-specialties">
+                        <span class="specialty-tag">Hidratação</span>
+                        <span class="specialty-tag">Botox Capilar</span>
+                        <span class="specialty-tag">Reconstrução</span>
+                    </div>
+                    <div class="professional-schedule">
+                        <h4>Horários Disponíveis Hoje:</h4>
+                        <div class="time-slots">
+                            <button class="time-slot">09:00</button>
+                            <button class="time-slot">12:30</button>
+                            <button class="time-slot">15:00</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="bookAppointment('Mariana Lima')">Agendar com Mariana</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7.5 7.5L16.5 16.5M16.5 7.5L7.5 16.5M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <h3>Barber & Beauty</h3>
+                    </div>
+                    <p>Seu salão de beleza e barbearia online</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="index.html#services">Cortes</a></li>
+                        <li><a href="index.html#services">Coloração</a></li>
+                        <li><a href="index.html#services">Tratamentos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Termos</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Barber & Beauty. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Made with Badge -->
+    <div class="made-with-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        Made with Manus
+    </div>
+
+    <script src="script.js"></script>
+    <script src="board.js"></script>
+</body>
+</html>

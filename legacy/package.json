@@ -1,0 +1,33 @@
+{
+  "name": "barbertop",
+  "version": "1.0.0",
+  "description": "Sistema de agendamento online para barbearias e salões de beleza",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server -p 8000 -o",
+    "dev": "npx live-server --port=8000 --open=index.html",
+    "format": "npx prettier --write \"**/*.{html,css,js,json,md}\"",
+    "lint:css": "npx stylelint \"**/*.css\"",
+    "lint:js": "npx eslint \"**/*.js\""
+  },
+  "keywords": [
+    "barber",
+    "beauty",
+    "scheduler",
+    "appointment",
+    "booking",
+    "responsive",
+    "dark-theme"
+  ],
+  "author": "Barber & Beauty",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/barbertop"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

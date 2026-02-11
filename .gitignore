@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.env
+.venv/
+venv/
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Build outputs
+build/
+dist/
+.cache/
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Database
+*.sqlite
+*.db
+
+# Misc
+.sass-cache/
+*.css.map
+*.js.map
