@@ -21,10 +21,22 @@ st.set_page_config(
 inject_global_styles()
 render_header()
 
-st.markdown("# Mural de Profissionais")
+st.markdown(
+    """
+    <div class="hero" style="padding: 1.75rem 0 1.25rem; min-height: auto;">
+        <div class="section-header" style="margin: 0;">
+            <div class="section-title">Mural de Profissionais</div>
+            <div class="section-subtitle">Conheca nossa equipe de especialistas e veja os horarios disponiveis</div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 if not get_database_url():
-    st.warning("DATABASE_URL nao configurada. Configure o Postgres para salvar agendamentos.")
+    st.warning(
+        "Banco nao configurado. Defina DATABASE_URL (ou URL_DO_BANCO_DE_DADOS/URL_PUBLICA_DO_BANCO_DE_DADOS) para salvar agendamentos."
+    )
 
 services = list_services()
 professionals = list_professionals()
@@ -37,15 +49,19 @@ service_options = {"Todos": None}
 for service in services:
     service_options[service["name"]] = service["id"]
 
-selected_service_name = st.selectbox("Servico", options=list(service_options.keys()))
-selected_service_id = service_options[selected_service_name]
+filter_cols = st.columns(3)
+with filter_cols[0]:
+    selected_service_name = st.selectbox("Servico", options=list(service_options.keys()))
+    selected_service_id = service_options[selected_service_name]
 
-selected_date = st.date_input("Data", value=date.today(), min_value=date.today())
+with filter_cols[1]:
+    selected_date = st.date_input("Data", value=date.today(), min_value=date.today())
 
-time_filter = st.selectbox(
-    "Horario",
-    options=["Todos", "Manha (8h - 12h)", "Tarde (12h - 18h)", "Noite (18h - 22h)"],
-)
+with filter_cols[2]:
+    time_filter = st.selectbox(
+        "Horario",
+        options=["Todos", "Manha (8h - 12h)", "Tarde (12h - 18h)", "Noite (18h - 22h)"],
+    )
 
 availability = list_availability(selected_date)
 availability_by_prof = {}
@@ -96,7 +112,12 @@ for prof in professionals:
     selected_slot = None
     for idx, slot in enumerate(slots):
         with cols[idx % len(cols)]:
-            if st.button(slot["time"].strftime("%H:%M"), key=f"slot-{prof['id']}-{idx}"):
+            if st.button(
+                slot["time"].strftime("%H:%M"),
+                key=f"slot-{prof['id']}-{idx}",
+                type="secondary",
+                use_container_width=True,
+            ):
                 selected_slot = slot
 
     if selected_slot:
@@ -113,7 +134,7 @@ for prof in professionals:
                 service_ids[0] if service_ids else None,
             )
 
-            submitted = st.form_submit_button("Confirmar agendamento")
+            submitted = st.form_submit_button("Confirmar agendamento", type="primary")
 
             if submitted:
                 if not customer_name:
@@ -133,7 +154,10 @@ for prof in professionals:
                     if success:
                         st.success("Agendamento confirmado e salvo na nuvem.")
                     else:
-                        st.error("Falha ao salvar. Verifique o DATABASE_URL.")
+                        st.error("Falha ao salvar. Verifique a URL do banco (DATABASE_URL ou URL_DO_BANCO_DE_DADOS).")
+                        st.caption(
+                            "No Railway, crie uma reference do Postgres para DATABASE_URL ou use URL_DO_BANCO_DE_DADOS direto."
+                        )
 
     st.markdown("---")
 

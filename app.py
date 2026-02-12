@@ -63,12 +63,36 @@ render_header()
 st.markdown(
     """
     <div class="hero">
-        <div class="hero-badge">✨ Agendamento Online</div>
-        <h1>Sua <span style="color:#FF6B00;">beleza</span> em primeiro lugar</h1>
-        <p class="muted">
-            Agende seus servicos de barbearia e beleza de forma rapida e facil. 
-            Escolha o profissional, o horario e aproveite uma experiencia premium.
-        </p>
+        <div class="hero-grid">
+            <div>
+                <div class="hero-badge"><span style="font-size:1.1rem;">✨</span> Agendamento Online</div>
+                <div class="hero-title">Sua <span class="highlight">beleza</span> em primeiro lugar</div>
+                <div class="hero-description">
+                    Agende seus servicos de barbearia e beleza de forma rapida e facil.
+                    Escolha o profissional, o horario e aproveite uma experiencia premium.
+                </div>
+                <div class="stats">
+                    <div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Clientes Satisfeitos</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Profissionais</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Avaliacao</div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-placeholder">
+                <div>
+                    <div style="font-size:0.95rem; margin-bottom:0.5rem;">Imagem do Salao</div>
+                    <div class="muted" style="font-size:0.9rem;">(placeholder)</div>
+                </div>
+            </div>
+        </div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -76,12 +100,20 @@ st.markdown(
 
 if not get_database_url():
     st.warning(
-        "DATABASE_URL nao configurada. Exibindo dados locais. Configure o Postgres no Railway para salvar agendamentos."
+        "Banco nao configurado. Exibindo dados locais. Defina DATABASE_URL (ou URL_DO_BANCO_DE_DADOS/URL_PUBLICA_DO_BANCO_DE_DADOS) para salvar agendamentos."
     )
 
 services = list_services() or SERVICES_FALLBACK
 
-st.markdown("## Nossos Servicos")
+st.markdown(
+    """
+    <div class="section-header">
+        <div class="section-title">Nossos Servicos</div>
+        <div class="section-subtitle">Oferecemos uma variedade de servicos premium para homens e mulheres</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 cols = st.columns(3)
 for idx, service in enumerate(services):
     with cols[idx % 3]:
@@ -90,11 +122,13 @@ for idx, service in enumerate(services):
         st.markdown(
             f"""
             <div class="card">
-                <h3>{service['name']}</h3>
-                <p class="muted">{service.get('tagline', '')}</p>
-                <p class="muted">{service.get('description', '')}</p>
-                <p class="price">{price_text}</p>
-                <p class="muted">{service['duration_minutes']} min</p>
+                <h3 style="margin:0 0 0.25rem 0;">{service['name']}</h3>
+                <p class="muted" style="margin:0 0 0.75rem 0;">{service.get('tagline', '')}</p>
+                <p class="muted" style="margin:0 0 1rem 0;">{service.get('description', '')}</p>
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem;">
+                    <span class="price" style="font-size:1.1rem;">{price_text}</span>
+                    <span class="muted">{service['duration_minutes']} min</span>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -121,6 +155,6 @@ for idx, (title, subtitle) in enumerate(features):
         )
 
 st.markdown("## Pronto para agendar?")
-st.button("Entrar e Agendar", use_container_width=True)
+st.button("Entrar e Agendar", type="primary", use_container_width=True)
 
 render_footer()

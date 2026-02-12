@@ -40,6 +40,8 @@ python scripts/smoke_test.py
 - O deploy usa `nixpacks.toml`.
 - Certifique-se de definir `DATABASE_URL` nas variaveis do Railway.
 
+Obs: o projeto usa recursos de UI do Streamlit mais recentes (ex.: `type="primary"` em botoes), entao mantenha o `requirements.txt` atualizado.
+
 ## Legacy
 
 Os arquivos do site estatico anterior estao em `legacy/`.

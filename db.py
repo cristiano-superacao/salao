@@ -80,7 +80,11 @@ appointments = Table(
 
 
 def get_database_url() -> str | None:
-    url = os.getenv("DATABASE_URL")
+    url = (
+        os.getenv("DATABASE_URL")
+        or os.getenv("URL_DO_BANCO_DE_DADOS")
+        or os.getenv("URL_PUBLICA_DO_BANCO_DE_DADOS")
+    )
     if not url:
         return None
     if url.startswith("postgres://"):

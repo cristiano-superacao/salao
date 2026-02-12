@@ -80,7 +80,9 @@ def seed_database() -> None:
     init_db()
     engine = get_engine()
     if not engine:
-        raise RuntimeError("DATABASE_URL nao configurada.")
+        raise RuntimeError(
+            "URL do banco nao configurada. Defina DATABASE_URL (ou URL_DO_BANCO_DE_DADOS/URL_PUBLICA_DO_BANCO_DE_DADOS)."
+        )
     if is_seeded():
         return
 
